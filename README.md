@@ -1,6 +1,6 @@
-# java.kyrc
+
 public class Calkylator{
              public static void main( String[] arg){
-                  System.out.println("dfghjjhgfd");
+                  System.out.println("df");
 }
 }
