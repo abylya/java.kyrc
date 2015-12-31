@@ -1,19 +1,36 @@
-public class Calkylator{
+public class Calkylator {
 
-private int rezylt;
+    private double rezylt=0;
 
-public void add(int ...params){
-for(Integer param : params){
-     this.rezylt+=param;
-}
-}
+        public void add(double a,double b){
+           rezylt=a+b;
+        }
+        public void minyc(double a,double b){
+          rezylt=a-b;
+        }
 
-public int getResult(){
-    return this.rezylt;
-}
+        public void ymnozh(double a,double b){
 
-public void cleanResult(){
-    this.rezylt=0;
-}
+            rezylt=a*b;
+        }
 
-}
+        public void delen(double a,double b){
+            rezylt=a/b;
+
+        }
+
+    public void setRezylt(double rezylt) {
+        this.rezylt = rezylt;
+    }
+
+    public  double getResult(){
+            return this.rezylt;
+        }
+
+        public void cleanResult(){
+            this.rezylt=0;
+        }
+
+
+
+    }
