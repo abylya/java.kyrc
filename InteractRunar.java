@@ -1,35 +1,116 @@
+
 import java.util.Scanner;
 
-public class InteractRunar {
-     
-    public static void main(String[] arg){
- 
-         Scanner reader=new Scanner(System.in);
 
-                try{
+public class Main {
 
-                      Calkylator calc=new Calkylator();
-                        String exit="no";
-                           while(!exit.equals("yes")){
+    public static void main(String[] args) {
+        Scanner reader = new Scanner(System.in);
+        try {
+            Calkylator calc = new Calkylator();
+            boolean c=true;
+            String exit = "";
+            String argyment="";
 
-                             System.out.println("Enter first argyment");
-                              String first=reader.next();
-                               System.out.println("Enter second argyment");
-                                 String second=reader.next();
-                               
-                              calc.add(Integer.valueOf(first),Integer.valueOf(second));
-                              System.out.println("Rezylt= "+calc.getResult());
-                              calc.cleanResult ();
-                              
-                                 System.out.println("Exsit : yes/no");
-                                 exit=reader.next();
-                               }
+            while (!exit.equals("yes")) {
 
-                        } 
-                            finally{
-                               reader.close();
-                             }
+                System.out.println("Rezult="+calc.getResult()+"\n"+"Exsit :'X'");
+                 argyment = reader.next();
+                if(argyment.equals("x")||argyment.equals("X")){
+                    break;  }
 
-}
+
+
+                if (argyment.equals("+") || argyment.equals("-") || argyment.equals("*") || argyment.equals("/")) {
+                    String v = argyment;
+                    System.out.println("Enter argyment");
+                    argyment = reader.next();
+                            if(v.equals("/")&&Double.valueOf(argyment)==0){
+                                while (c){
+                                    System.out.println("Nizya na nuul");
+                                    System.out.println("Enter argyment");
+                                    argyment=reader.next();
+                                    if(Double.valueOf(argyment)>0){break;}
+                                }
+
+                            }
+                    switch (v) {
+                        case "-":
+                            calc.minyc(calc.getResult(), Double.valueOf(argyment));
+                            break;
+                        case "+":
+                            calc.add(calc.getResult(), Double.valueOf(argyment));
+                            break;
+                        case "*":
+                            calc.ymnozh(calc.getResult(),Double.valueOf(argyment));
+                            break;
+                        case "/":
+                            calc.delen(calc.getResult(), Double.valueOf(argyment));
+                            break;
+                    }
+                }
+                else {
+                    calc.setRezylt(Double.valueOf(argyment));
+                    System.out.println("Enter operaziya");
+
+                    String v="";
+                    while (c){
+                        v=reader.next();
+                        if(v.equals("+") || v.equals("-") || v.equals("*") || v.equals("/")){
+                            break;
+                        }
+                        System.out.println("Ne pravilnii vvod");
+
+                    }
+
+                    System.out.println("Enter second argyment");
+                    argyment=reader.next();
+
+                    if(v.equals("/")){
+                        while (c) {
+                            if (argyment == "0") {
+                                System.out.println("Nizya na nuul");
+                                System.out.println("Enter second argyment");
+                                argyment=reader.next();
+                            }
+                            if(Double.valueOf(argyment)>0){
+                                c=false;
+                            }
+                        }
+                    }
+                    c=true;
+
+                    if (v.equals("+") || v.equals("-") || v.equals("*") || v.equals("/")) {
+
+
+                        switch (v) {
+                            case "-":
+                                calc.minyc(calc.getResult(), Double.valueOf(argyment));
+                                break;
+                            case "+":
+                                calc.add(calc.getResult(), Double.valueOf(argyment));
+                                break;
+                            case "*":
+                                calc.ymnozh(calc.getResult(),Double.valueOf(argyment));
+                                break;
+                            case "/":
+                                calc.delen(calc.getResult(), Double.valueOf(argyment));
+                                break;
+                        }
+                    }
+                }
+
+            }
+
+
+        }
+        finally {
+            reader.close();
+
+        }
+    }
+
+
+
 
 }
